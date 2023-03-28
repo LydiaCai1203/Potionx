@@ -1,0 +1,58 @@
+{
+    "development": {
+        "potionx_rel_db": "postgresql",
+        "postgresql": {
+            "username": "potionx",
+            "password": "potionx",
+            "host": "127.0.0.1",
+            "port": 5432,
+            "database": "potionx"
+        },
+        "mysql": {
+            "username": "potionx",
+            "password": "potionx",
+            "host": "mysql",
+            "port": 3306,
+            "database": "potionx",
+            "charset": "UTF8MB4"
+        },
+        "redis": {
+            "host": "redis",
+            "port": 3679,
+            "db": 0
+        },
+        "mongodb": {},
+        "host": "0.0.0.0",
+        "port": 5555,
+        "workers": 1,
+        "reload": true
+    },
+    "production": {
+        "potionx_rel_db": "postgresql",
+        "postgresql": {
+            "username": "potionx",
+            "password": "potionx",
+            "host": "postgres",
+            "port": 5432,
+            "database": "potionx"
+        },
+        "mysql": {
+            "username": "potionx",
+            "password": "potionx",
+            "host": "mysql",
+            "port": 3306,
+            "database": "potionx",
+            "charset": "UTF8MB4"
+        },
+        "redis": {
+            "host": "redis",
+            "port": 3679,
+            "db": 0
+        },
+        "mongodb": {},
+        "host": "0.0.0.0",
+        "port": 5555,
+        "workers": 1,
+        "reload": true
+    }
+}

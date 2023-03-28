@@ -1,0 +1,9 @@
+-i https://mirrors.aliyun.com/pypi/simple
+fastapi
+uvicorn[standard]
+gunicorn
+pydantic
+sqlalchemy
+dynaconf
+loguru
+psycopg2

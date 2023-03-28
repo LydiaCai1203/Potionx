@@ -1,0 +1,59 @@
+version: '2.3'  # for dev
+
+services:
+  postgres:
+    image: postgres:14.2
+    restart: unless-stopped
+    ports:
+    - 0.0.0.0:5432:5432
+    environment:
+    - POSTGRES_USER=potionx
+    - POSTGRES_PASSWORD=potionx
+    - PGDATA=/data/postgres/pgdata
+    volumes:
+    - potionx.postgres.data:/data/postgres
+    logging: &id001
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+    - potionx.network
+
+  potionx:
+    image: acaicai.com/potionx:v1.0
+    build:
+      context: .
+      dockerfile: docker/base.dockerfile
+    restart: unless-stopped
+    ports:
+      - 5555:5555
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    networks:
+      - potionx.network
+
+volumes:
+  potionx.postgres.data:
+
+networks:
+  potionx.network:
+    driver: bridge
+    ipam:
+      config:
+      - gateway: 8.8.151.1
+        subnet: 8.8.151.1/24
+      driver: default
